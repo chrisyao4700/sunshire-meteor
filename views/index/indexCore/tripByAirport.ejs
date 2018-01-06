@@ -1,0 +1,63 @@
+<div role="tabpanel" class="tab-pane" id="airport">
+    <div class="row">
+        <form action="/submit" method="post" id="airport_form">
+            <div class="col-sm-12 mt">
+                <section>
+                    <label for="class">From/To Airport:</label>
+                    <select class="cs-select cs-skin-border" name="is_pickup" required>
+                        <option disabled selected value> -- select an option --</option>
+                        <option value="1">From Airport</option>
+                        <option value="0">To Airport</option>
+                    </select>
+                </section>
+            </div>
+            <div class="col-sm-12 mt">
+                <section>
+                    <label for="class">Airport:</label>
+                    <select class="cs-select cs-skin-border" name="airport_address" required>
+                        <option disabled selected value> -- select an airport --</option>
+                        <option value="Los Angeles International Airport">LAX (Los Angeles International Airport)
+                        </option>
+                        <option value="LA/Ontario International Airport (ONT), Ontario, CA 91761, USA">ONT (LA/Ontario
+                            International Airport)
+                        </option>
+                        <option value="John Wayne Airport, 18601 Airport Way, Santa Ana, CA 92707, USA">SNA (John Wayne
+                            Airport)
+                        </option>
+                        <option value="Long Beach Airport, 4100 Donald Douglas Dr, Long Beach, CA 90808, USA">LGB (Long
+                            Beach Airport)
+                        </option>
+                        <option value="100 Swinford St, Wilmington, CA 90744, USA">San Pedro Cruise Terminal</option>
+                        <option value="Long Beach Cruise Terminal">Long Beach Cruise Terminal</option>
+                    </select>
+                </section>
+            </div>
+            <div class="col-xxs-12 col-xs-12 mt">
+                <div class="input-field">
+                    <label for="from">Your Address:</label>
+                    <input type="text" class="form-control" id="airport_customer_address" name="customer_address"
+                           placeholder="2234 Walnut street, Fontana, CA" required/>
+                </div>
+            </div>
+            <div class="col-xxs-12 col-xs-6 mt alternate">
+                <div class="input-field">
+                    <label for="date-start">Pickup Date:</label>
+                    <input type="text" class="form-control" id="airport-pickupDate" name="pickup_date"
+                           placeholder="mm/dd/yyyy" onfocus="blur();" required/>
+                </div>
+            </div>
+            <div class="col-xxs-12 col-xs-6 mt alternate">
+                <div class="input-field">
+                    <label for="date-start">Pickup Time:</label>
+                    <input type="text" class="form-control" id="airport-pickupTime" name="pickup_time"
+                           placeholder="HH:mm" onfocus="blur();" required/>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <input type="text" name="service_code" value="airport" hidden>
+                <input type="submit" class="btn btn-primary btn-block"
+                       value="Get Price">
+            </div>
+        </form>
+    </div>
+</div>

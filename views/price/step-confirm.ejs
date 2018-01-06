@@ -1,0 +1,15 @@
+<% var confirm_tag = ''; %>
+<% if(segMax < 4){ %>
+<% confirm_tag = 'disabled step step-hide' %>
+<% }else if(segIndex === 4 && segMax >= 4){ %>
+<% confirm_tag = 'active step' %>
+<% }else{ %>
+<% confirm_tag = 'step step-hide' %>
+<% } %>
+<div class="<%= confirm_tag %>">
+    <i class="info icon"></i>
+    <div class="content">
+        <div class="title">Confirm Order</div>
+        <div class="description">Verify order details</div>
+    </div>
+</div>

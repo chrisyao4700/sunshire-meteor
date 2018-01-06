@@ -1,0 +1,15 @@
+<% var contact_tag = ''; %>
+<% if(segMax < 2){ %>
+<% contact_tag = 'disabled step step-hide' %>
+<% }else if(segIndex === 2 && segMax >= 2){ %>
+<% contact_tag = 'active step' %>
+<% }else{ %>
+<% contact_tag = 'step step-hide' %>
+<% } %>
+<div class="<%= contact_tag %>">
+    <i class="user icon"></i>
+    <div class="content">
+        <div class="title">Contact Information</div>
+        <div class="description">Enter passenger information</div>
+    </div>
+</div>

@@ -1,0 +1,287 @@
+<% if(segIndex === 1){ %>
+<div class="ui attached segment">
+    <div class="ui header">Services <i class="info circle icon"><%= pre_order.id %></i></div>
+    <div class="ui divided items">
+        <div class="item">
+            <div class="ui two column very relaxed grid">
+                <!--TO TRIP-->
+                <% var to_trip = pre_order.to_trip.record %>
+                <div class="column">
+                    <div id="to-trip-from" data-address="<%= to_trip.location_from %>" hidden></div>
+                    <div id="to-trip-to" data-address="<%= to_trip.location_to %>" hidden></div>
+                    <div class="ui items">
+                        <div class="item">
+                            <div class="content">
+                                <a class="header">TRIP # 1</a>
+                                <div class="meta">
+                                    <span>Pickup Time: <%= to_trip.pickup_time %></span>
+                                </div>
+                                <div class="description">
+                                    <p>From: <%= to_trip.location_from %></p>
+                                    <p>To: <%= to_trip.location_to %></p>
+                                </div>
+                                <!--<div class="extra">-->
+                                <!--Additional Details-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="price-quote-map" id="to-quote-map" style="background-color: yellow"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="column">
+                    <div class="ui divided items">
+
+                        <div class="item">
+                            <div class="ui tiny image">
+                                <img src="/images/sedan.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">SunshiRe Sedan</a>
+                                <div class="meta">
+                                    <% if(to_trip.passenger === '1') { %>
+                                    <span class="price"><%= '$' + to_trip.price %></span>
+                                    <% } %>
+                                    <% if(to_trip.passenger === '6'){ %>
+                                    <span class="price"><%= '$' + (parseFloat(to_trip.price) - 18).toFixed(2) %></span>
+                                    <% } %>
+                                </div>
+                                <div class="description">
+                                    <p>Max 4 passengers per party.Please make sure your luggage will fit.</p>
+                                </div>
+                                <div class="extra">
+                                    <form action="/price/submit" method="post">
+                                        <input name="pre_trip_id" value="<%= to_trip.id %>" hidden>
+                                        <input name="pre_order_id" value="<%= pre_order.id %>" hidden>
+                                        <input name="type" value="SEDAN" hidden>
+                                        <% if(to_trip.passenger === '1') { %>
+                                        <button type="submit" class="ui right labeled icon green button disabled"
+                                                name="service_code" value="">
+                                            <div class="visible content">Selected</div>
+                                            <i class="checkmark icon"></i>
+                                        </button>
+                                        <% } %>
+                                        <% if(to_trip.passenger === '6'){ %>
+                                        <button type="submit" class="ui right labeled icon green button"
+                                                name="service_code" value="vehicle_type">
+                                            <div class="visible content">Select</div>
+                                            <i class="hand paper icon"></i>
+                                        </button>
+                                        <% } %>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui tiny image">
+                                <img src="/images/minivan.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">SunshiRe Minivan</a>
+                                <div class="meta">
+                                    <% if(to_trip.passenger === '1') { %>
+                                    <span class="price"><%= '$' + (parseFloat(to_trip.price) + 18).toFixed(2) %></span>
+                                    <% } %>
+                                    <% if(to_trip.passenger === '6'){ %>
+                                    <span class="price"><%= '$' + to_trip.price %></span>
+                                    <% } %>
+                                </div>
+                                <div class="description">
+                                    <p>Max 6 passengers per party.Please make sure your luggage will fit.</p>
+                                </div>
+                                <div class="extra">
+                                    <form action="/price/submit" method="post">
+                                        <input name="pre_trip_id" value="<%= to_trip.id %>" hidden>
+                                        <input name="pre_order_id" value="<%= pre_order.id %>" hidden>
+                                        <input name="type" value="MINIVAN" hidden>
+                                        <% if(to_trip.passenger === '1') { %>
+                                        <button type="submit" class="ui right labeled icon green button"
+                                                name="service_code" value="vehicle_type">
+                                            <div class="visible content">Select</div>
+                                            <i class="hand paper icon"></i>
+
+                                        </button>
+                                        <% } %>
+                                        <% if(to_trip.passenger === '6'){ %>
+                                        <button type="submit" class="ui right labeled icon green button disabled"
+                                                name="service_code" value="">
+
+                                            <div class="visible content">Selected</div>
+                                            <i class="checkmark icon"></i>
+
+                                        </button>
+                                        <% } %>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% var has_return = pre_order.return_trip.status %>
+        <div id="check-return" data-has=<%= has_return %> hidden></div>
+        <% if(has_return === true){ %>
+        <div class="item">
+            <% var return_trip = pre_order.return_trip.record %>
+            <div class="ui two column very relaxed grid">
+                <!--RETURN TRIP-->
+                <div class="column">
+                    <div id="return-trip-from" data-address="<%= return_trip.location_from %>" hidden></div>
+                    <div id="return-trip-to" data-address="<%= return_trip.location_to %>" hidden></div>
+                    <div class="ui items">
+                        <div class="item">
+                            <div class="content">
+                                <a class="header">TRIP # 2</a>
+                                <div class="meta">
+                                    <span>Pickup Time: <%= return_trip.pickup_time %></span>
+                                </div>
+                                <div class="description">
+                                    <p>From: <%= return_trip.location_from %></p>
+                                    <p>To: <%= return_trip.location_to %></p>
+                                </div>
+                                <!--<div class="extra">-->
+                                <!--Additional Details-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="price-quote-map" id="return-quote-map" style="background-color: yellow"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="column">
+                    <div class="ui divided items">
+                        <div class="item">
+                            <div class="ui tiny image">
+                                <img src="/images/sedan.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">SunshiRe Sedan</a>
+                                <div class="meta">
+                                    <% if(return_trip.passenger === '1') { %>
+                                    <!--sedan-->
+                                    <span class="price"><%= '$' + return_trip.price %></span>
+                                    <% } %>
+                                    <% if(return_trip.passenger === '6'){ %>
+                                    <!--minivan-->
+                                    <span class="price"><%= '$' + (parseFloat(return_trip.price) - 18).toFixed(2) %></span>
+                                    <% } %>
+                                </div>
+                                <div class="description">
+                                    <p>Max 4 passengers per party.Please make sure your luggage will fit.</p>
+                                </div>
+                                <div class="extra">
+                                    <form action="/price/submit" method="post">
+                                        <input name="pre_trip_id" value="<%= return_trip.id %>" hidden>
+                                        <input name="pre_order_id" value="<%= pre_order.id %>" hidden>
+                                        <input name="type" value="SEDAN" hidden>
+                                        <% if(return_trip.passenger === '1') { %>
+                                        <button type="submit" class="ui right labeled icon green button disabled"
+                                                name="service_code" value="">
+                                            <div class="visible content">Selected</div>
+                                            <i class="checkmark icon"></i>
+                                        </button>
+                                        <% } %>
+                                        <% if(return_trip.passenger === '6'){ %>
+                                        <button type="submit" class="ui right labeled icon green button"
+                                                name="service_code" value="vehicle_type">
+                                            <div class="visible content">Select</div>
+                                            <i class="hand paper icon"></i>
+                                        </button>
+                                        <% } %>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui tiny image">
+                                <img src="/images/minivan.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">SunshiRe Minivan</a>
+                                <div class="meta">
+                                    <% if(return_trip.passenger === '1') { %>
+                                    <span class="price"><%= '$' + (parseFloat(return_trip.price) + 18).toFixed(2) %></span>
+                                    <% } %>
+                                    <% if(return_trip.passenger === '6'){ %>
+                                    <span class="price"><%= '$' + return_trip.price %></span>
+                                    <% } %>
+                                </div>
+                                <div class="description">
+                                    <p>Max 6 passengers per party.Please make sure your luggage will fit.</p>
+                                </div>
+                                <div class="extra">
+                                    <form action="/price/submit" method="post">
+                                        <input name="pre_trip_id" value="<%= return_trip.id %>" hidden>
+                                        <input name="pre_order_id" value="<%= pre_order.id %>" hidden>
+                                        <input name="type" value="MINIVAN" hidden>
+                                        <% if(return_trip.passenger === '1') { %>
+                                        <button type="submit" class="ui right labeled icon green button"
+                                                name="service_code" value="vehicle_type">
+                                            <div class="visible content">Select</div>
+                                            <i class="hand paper icon"></i>
+
+                                        </button>
+                                        <% } %>
+                                        <% if(return_trip.passenger === '6'){ %>
+                                        <button type="submit" class="ui right labeled icon green button disabled"
+                                                name="service_code" value="">
+                                            <div class="visible content">Selected</div>
+                                            <i class="checkmark icon"></i>
+
+                                        </button>
+                                        <% } %>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <!--SUBMIT VALUE-->
+        <div class="item">
+            <div class="center aligned content">
+                <form action="/price/submit" method="post">
+                    <input name="pre_order_id" value="<%= pre_order.id %>" hidden/>
+
+                    <div class="ui three buttons">
+                        <button type="submit" class="ui left labeled icon red button" name="service_code"
+                                value="back_to_location">
+                            <div class="visible content">Back</div>
+                            <i class="left arrow icon"></i>
+                        </button>
+                        <button type="button" class="ui right labeled icon orange button" onclick="toggleOnlineChatting()">
+                            <div class="visible content">Contact Sales</div>
+                            <i class="idea icon"></i>
+                        </button>
+                        <button type="submit" class="ui right labeled icon green button" name="service_code"
+                                value="confirm_price">
+                            <div class="visible content">Total: $ <%= pre_order.total %></div>
+                            <i class="right arrow icon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% } %>
+
+

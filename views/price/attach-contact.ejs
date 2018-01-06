@@ -1,0 +1,79 @@
+<% if(segIndex === 2){ %>
+<div class="ui attached segment">
+    <div class="ui header">Contact <i class="info circle icon"><%= pre_order.id %></i></div>
+
+    <div class="ui item">
+
+        <form class="ui form" action="/price/submit" method="post">
+            <% if(pre_order.customer_info.status === false){ %>
+
+            <div class="three fields">
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" required/>
+                </div>
+                <div class="field">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" required/>
+                </div>
+                <div class="field">
+                    <label>E-mail</label>
+                    <input type="email" name="email" required/>
+                </div>
+
+            </div>
+            <div class="field">
+                <label>Special Instruction</label>
+                <textarea rows="2" name="note" placeholder="Need car seats?"></textarea>
+            </div>
+
+            <% } else{ %>
+            <% var customer = pre_order.customer_info.record %>
+            <div class="three fields">
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" value="<%= customer.name %>" required/>
+                </div>
+                <div class="field">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" value="<%= customer.phone %>" required/>
+                </div>
+                <div class="field">
+                    <label>E-mail</label>
+                    <input type="email" name="email" value="<%= customer.email %>" required/>
+                </div>
+
+            </div>
+            <div class="field">
+                <label>Special Instruction</label>
+                <textarea type="text" rows="2" name="note"
+                          placeholder="Need car seats?"><%= pre_order.note %></textarea>
+            </div>
+
+            <% } %>
+
+            <input name="pre_order_id" value="<%= pre_order.id %>" hidden/>
+            <div class="ui three buttons">
+                <!--<button type="submit" class="ui left labeled icon red button" name="service_code"-->
+                        <!--value="back_to_service">-->
+                <button type="button" class="ui left labeled icon red button" onclick="back_to_service()">
+                    <div class="visible content">Back</div>
+                    <i class="left arrow icon"></i>
+                </button>
+                <button type="button" class="ui right labeled icon orange button" onclick="toggleOnlineChatting()">
+                    <div class="visible content">Contact Sales</div>
+                    <i class="idea icon"></i>
+                </button>
+                <button type="submit" class="ui right labeled icon green button" name="service_code"
+                        value="confirm_contact">
+                    <div class="visible content">Continue: $ <%= pre_order.total %></div>
+                    <i class="right arrow icon"></i>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+<% } %>

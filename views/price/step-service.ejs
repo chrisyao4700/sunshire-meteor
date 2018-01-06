@@ -1,0 +1,15 @@
+<% var service_tag = '';%>
+<% if(segMax < 1){ %>
+<% service_tag ='disabled step step-hide'%>
+<% }else if(segIndex === 1 && segMax >= 1){ %>
+<% service_tag ='active step'%>
+<% }else{ %>
+<% service_tag ='step step-hide'%>
+<% } %>
+<div class="<%=service_tag%>">
+    <i class="truck icon"></i>
+    <div class="content">
+        <div class="title">Service</div>
+        <div class="description">Choose your service options</div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<% var payment_tag = '';%>
+<% if(segMax < 3){ %>
+<% payment_tag ='disabled step step-hide'%>
+<% }else if(segIndex === 3 && segMax >= 3){ %>
+<% payment_tag ='active step'%>
+<% }else{ %>
+<% payment_tag ='step step-hide'%>
+<% } %>
+<div class="<%=payment_tag%>">
+    <i class="payment icon"></i>
+    <div class="content">
+        <div class="title">Payment</div>
+        <div class="description">Enter billing details</div>
+    </div>
+</div>

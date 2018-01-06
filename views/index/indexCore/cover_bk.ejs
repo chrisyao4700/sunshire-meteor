@@ -1,0 +1,58 @@
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5"
+         style="background-image: url(/images/index_cover_003.png);">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6" style="vertical-align: middle">
+                        <div class="tabulation animate-box">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#flight" aria-controls="flight" role="tab" data-toggle="tab">Book By
+                                        Flight</a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="#airport" aria-controls="airport" role="tab"
+                                       data-toggle="tab">Book By Airport</a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="#p2p" aria-controls="p2p" role="tab"
+                                       data-toggle="tab">Point To Point</a>
+                                </li>
+
+
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+
+                                <% include tripByFlight.ejs %>
+
+                                <% include tripByAirport.ejs %>
+
+                                <% include pointToPoint.ejs %>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="desc2 animate-box">
+                        <div class="col-sm-6 col-sm-push-1 col-md-6 col-md-push-1">
+                            <!--<p>HandCrafted by <a href="http://frehtml5.co/" target="_blank"-->
+                            <!--class="fh5co-site-name">FreeHTML5.co</a></p>-->
+                            <h2>Exclusive Ride</h2>
+                            <h3>Time Limitted Offer Just For You</h3>
+                            <span class="price">$19.99</span>
+                            <p><a class="btn btn-primary btn-lg" onclick="toggleOnlineChatting()">Contact Sales</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

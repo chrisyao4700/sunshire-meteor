@@ -1,0 +1,118 @@
+<% if(segIndex === 0){ %>
+<div class="ui attached segment">
+    <div class="ui header">Location & Time <i class="info circle icon"><%= pre_order.id %></i></div>
+    <form class="ui form" action="/price/submit" method="post">
+        <% var to_trip = pre_order.to_trip.record %>
+        <% var to_datetime = to_trip.pickup_time.split(' '); %>
+        <% var to_date = to_datetime[0]; %>
+        <% var to_time = to_datetime[1]; %>
+        <input name="to_trip_id" value="<%= to_trip.id %>" hidden>
+        <input name="pre_order_id" value="<%= pre_order.id %>" hidden>
+        <div class="ui header">TRIP #1</div>
+        <div class="two fields">
+            <div class="field">
+                <!--<script>-->
+                <!--alert(<%= to_trip.location_to %>);-->
+                <!--</script>-->
+                <label>From Location:</label>
+                <input type="text" id="to_location_from" name="toTrip_location_from" placeholder="Location From"
+                       value="<%= to_trip.location_from %>" required/>
+            </div>
+            <div class="field">
+                <label>To Location:</label>
+                <input type="text" id="to_location_to" name="toTrip_location_to" placeholder="Location To"
+                       value="<%= to_trip.location_to %>" required/>
+            </div>
+        </div>
+
+        <div class="three fields">
+            <div class="field">
+                <label>Flight Number:</label>
+                <input type="text" id="to_location_to" name="toTrip_flight_num" placeholder="UA#199"
+                       value="<%= to_trip.flight_num %>"/>
+            </div>
+            <div class="field">
+                <label>Pickup Date:</label>
+                <input type="text" name="toTrip_pickup_date" id="toTrip-pickupDate"
+                       placeholder="mm/dd/yyyy" value="<%= to_date %>" onfocus="blur()" required/>
+            </div>
+
+            <div class="field">
+                <label>Pickup Time:</label>
+                <input type="text" name="toTrip_pickup_time" id="toTrip-pickupTime"
+                       placeholder="HH:mm" value="<%= to_time %>" onfocus="blur();" required/>
+            </div>
+        </div>
+        <% if(pre_order.return_trip.status === true){ %>
+        <% var return_trip = pre_order.return_trip.record %>
+        <% var return_datetime = return_trip.pickup_time.split(' '); %>
+        <% var return_date = return_datetime[0]; %>
+        <% var return_time = return_datetime[1]; %>
+        <input name="return_trip_id" value="<%= return_trip.id %>" hidden/>
+        <div class="ui header">TRIP #2</div>
+        <div class="two fields">
+            <div class="field">
+                <label>From Location:</label>
+                <input type="text" class="address" id="return_location_from" name="returnTrip_location_from"
+                       placeholder="Location From"
+                       value="<%= return_trip.location_from %>" required/>
+            </div>
+            <div class="field">
+                <label>To Location:</label>
+
+                <input type="text" class="address" id="return_location_to" name="returnTrip_location_to"
+                       placeholder="Location To"
+                       value="<%= return_trip.location_to %>" required/>
+            </div>
+
+
+        </div>
+
+
+        <div class="three fields">
+            <div class="field">
+                <label>Flight Number:</label>
+                <input type="text" name="returnTrip_flight_num" placeholder="UA#199"
+                       value="<%= return_trip.flight_num %>"/>
+            </div>
+            <div class="field">
+                <label>Pickup Date:</label>
+                <input type="text" name="returnTrip_pickup_date" id="returnTrip-pickupDate"
+                       placeholder="mm/dd/yyyy" value="<%= return_date %>" onfocus="blur();" required/>
+            </div>
+
+            <div class="field">
+                <label>Pickup Time:</label>
+                <input type="text" name="returnTrip_pickup_time" id="returnTrip-pickupTime"
+                       placeholder="HH:mm" value="<%= return_time %>" onfocus="blur();" required/>
+            </div>
+        </div>
+        <% } %>
+
+        <div class="ui three buttons">
+            <% if(pre_order.return_trip.status === false){ %>
+            <button type="submit" class="ui left labeled icon red button" name="service_code" value="create_return_trip">
+                <div class="visible content">Round Trip</div>
+                <i class="down arrow icon"></i>
+            </button>
+            <% }else{ %>
+            <button type="submit" class="ui left labeled icon red button" name="service_code" value="remove_return_trip">
+                <div class="visible content">One Way</div>
+                <i class="up arrow icon"></i>
+            </button>
+            <% } %>
+            <button type="button" class="ui right labeled icon orange button" onclick="toggleOnlineChatting()">
+                <div class="visible content">Contact Sales</div>
+                <i class="idea icon"></i>
+            </button>
+            <button type="submit" class="ui right labeled icon green button" name="service_code" value="confirm_location">
+                <div class="visible content">Get Price</div>
+                <i class="right arrow icon"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+
+<% } %>
+

@@ -1,0 +1,34 @@
+<div role="tabpanel" class="tab-pane active" id="flight">
+    <div class="row">
+        <!--<div class="col-xxs-12 col-xs-6 mt">-->
+        <!--<div class="input-field">-->
+        <!--<label for="from">Carrier Code:</label>-->
+        <!--<input type="text" class="form-control" id="from-place"-->
+        <!--placeholder="UA"/>-->
+        <!--</div>-->
+        <!--</div>-->
+        <form action="/flights/search-flight" method="post" id="flight_form">
+            <div class="col-sm-12 mt">
+                <div class="input-field">
+                    <label for="from">Flight Number:</label>
+                    <input type="text" class="form-control" id="flight-num" name="flight_num"
+                           placeholder="UA321" style="text-transform:uppercase" required/>
+
+                </div>
+            </div>
+            <div class="col-sm-12 mt">
+                <div class="input-field">
+                    <label for="date-start">Departure Date:</label>
+                    <input type="text" class="form-control" id="flight-departure-date" name="flight_departure_date"
+                           placeholder="mm/dd/yyyy" onfocus="blur();" required/>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <input type="submit" class="btn btn-primary btn-block"
+                       value="Search Flight">
+            </div>
+        </form>
+
+    </div>
+</div>

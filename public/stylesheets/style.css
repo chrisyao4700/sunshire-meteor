@@ -1,0 +1,233 @@
+
+div#no-result-message {
+    background-color: transparent;
+}
+
+strong.modal-highlight {
+    color: orange;
+}
+
+div#price-cover {
+    background-image: url(/images/index_cover_003.png);
+    padding-top: 20px;
+}
+
+div#index-cover {
+    background-image: url(/images/index_cover_003.png);
+    padding-top: 20px;
+    height: 600px;
+}
+
+div#flight-cover {
+    background-image: url(/images/index_cover_003.png);
+    padding-top: 20px;
+    height: 600px;
+
+}
+
+.flight-content {
+
+}
+
+.price-content {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    color: white;
+}
+
+.fh5co-cover .index-content {
+    top: 30%;
+    position: absolute;
+    width: 100%;
+    margin-top: -20px;
+    z-index: 2;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .step-hide {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .index-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.fh5co-cover .index-content h2 {
+    color: #fff;
+    font-size: 60px;
+    margin-bottom: 10px;
+    font-weight: 400 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .index-content h2 {
+        font-size: 40px;
+    }
+}
+
+.fh5co-cover .index-content h3 {
+    color: #fff;
+}
+
+.fh5co-cover .index-content p {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.fh5co-cover .index-content p a {
+    color: #fff;
+}
+
+.fh5co-cover .index-content p a:hover, .fh5co-cover .index-content p a:focus {
+    color: #fff !important;
+}
+
+.fh5co-cover .index-content p a:hover.btn, .fh5co-cover .index-content p a:focus.btn {
+    border: 2px solid #fff !important;
+    background: transparent !important;
+}
+
+.fh5co-cover .index-content p a.fh5co-site-name {
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.fh5co-cover .index-content .price {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .index-content .desc2 {
+        display: none;
+    }
+}
+
+div#services-cover {
+    background-image: url(/images/index_cover_003.png);
+    /*padding-top: 20px;*/
+}
+
+.fh5co-cover .services-content {
+    top: 5%;
+    position: absolute;
+    width: 100%;
+    margin-top: -20px;
+    z-index: 2;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    #services-cover{
+        height: 1800px;
+    }
+    .fh5co-cover{
+        height: 1800px;
+    }
+    .services-content{
+        height: 1800px;
+    }
+    .fh5co-hero{
+        height: 1800px;
+    }
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .step-hide {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .services-content {
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+}
+
+.fh5co-cover .services-content h2 {
+    color: #fff;
+    font-size: 60px;
+    margin-bottom: 10px;
+    font-weight: 400 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .services-content h2 {
+        font-size: 40px;
+    }
+}
+
+.fh5co-cover .services-content h3 {
+    color: #fff;
+}
+
+.fh5co-cover .services-content p {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.fh5co-cover .services-content p a {
+    color: #fff;
+}
+
+.fh5co-cover .services-content p a:hover, .fh5co-cover .index-content p a:focus {
+    color: #fff !important;
+}
+
+.fh5co-cover .services-content p a:hover.btn, .fh5co-cover .index-content p a:focus.btn {
+    border: 2px solid #fff !important;
+    background: transparent !important;
+}
+
+.fh5co-cover .services-content p a.fh5co-site-name {
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.fh5co-cover .services-content .price {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-cover .services-content .desc2 {
+        display: none;
+    }
+}
+
+.final-trip-segment {
+    max-height: 250px;
+}
+
+div.price-quote-map {
+    width: 100%;
+    height: 200px;
+}
+
+div#dropin-container {
+    width: 100%;
+}
+
+.img-responsive{
+    max-height: 300px;
+}
+#index-hero{
+
+}

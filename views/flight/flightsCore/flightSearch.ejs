@@ -1,0 +1,31 @@
+<div class="col-sm-8 col-md-8 col-sm-push-2 col-md-push-2">
+    <div class="row">
+        <form action="/flights/search-flight" method="post">
+            <div class="col-sm-12 mt">
+                <div class="input-field">
+                    <label for="from">Flight Number:</label>
+                    <input type="text" class="form-control" id="flight-num" name="flight_num"
+                           placeholder="UA321" style="text-transform:uppercase" required/>
+
+                </div>
+            </div>
+            <div class="col-sm-12 mt">
+                <div class="input-field">
+                    <label for="date-start">Departure Date:</label>
+                    <input type="text" class="form-control" id="flight-departure-date" name="flight_departure_date"
+                           placeholder="mm/dd/yyyy" required/>
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <input type="submit" class="btn btn-primary btn-block"
+                       value="Search Flight">
+            </div>
+            <div class="col-xs-6">
+                <a class="btn btn-primary btn-block" onclick="toggleOnlineChatting()">Contact Sales</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>

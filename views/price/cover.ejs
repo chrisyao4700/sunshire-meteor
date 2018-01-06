@@ -1,0 +1,33 @@
+<div class="fh5co-hero" style="padding-bottom: 20px">
+
+    <div class="fh5co-overlay"></div>
+
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" id="price-cover">
+
+        <div class="price-content">
+            <div class="container">
+                <div class="row">
+                    <div id="pre_order_id" data-value="<%= pre_order.id %>"></div>
+                    <script>
+                        alert(#pre_order_id.va)
+                    </script>
+                    <% if(hints){ %>
+                    <ul>
+                        <% hints.forEach(function (hint) { %>
+                        <li style="color: red"><%= hint %></li>
+                        <% }); %>
+                        <li style="color: red">Reference #: <%= pre_order.id %></li>
+                        <li style="color: black">Our <a href="#" onclick="toggleOnlineChatting()" style="color: orange">Sales
+                                Agent <i class="users icon"></i></a> can help you from <a href="#"
+                                                                                          onclick="toggleOnlineChatting()"
+                                                                                          style="color: orange">here</a>.
+                        </li>
+                    </ul>
+                    <% } %>
+                    <% include steper.ejs %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

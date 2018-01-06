@@ -1,0 +1,102 @@
+<div class="col-md-8 col-sm-8 col-md-push-2 col-sm-push-2">
+    <% if(flightList.length > 0){ %>
+    <div class="ui items">
+        <% for(var i = 0;i < flightList.length; i++){ %>
+        <% var flight = flightList[i] %>
+
+        <div class="item">
+            <div class="ui small image">
+                <img src="/images/flight_icon.png">
+            </div>
+            <div class="content">
+                <a class="header"> <%= flight.dep_port %> -- <i class="send icon"></i> -- <%= flight.arr_port %></a>
+                <div class="meta">
+                    <span> <%= flight.carrier_code %><%= flight.flight_num %></span>
+                </div>
+
+                <div class="description">
+                    <p>Departure: <%= flight.dep_date %></p>
+                    <p>Arrival:<%= flight.arr_date %></p>
+                </div>
+                <div class="extra">
+                    <div class="ui basic green button" onclick="selectFlightWithIndex(<%= i %>)">Select</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui modal" id="airport-selection-<%= i %>">
+            <i class="close icon"></i>
+            <div class="header">
+                Which Airport?
+            </div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <img src="/images/airport_square.png">
+                </div>
+                <div class="description">
+                    <div class="ui header">Please select airport associated with your trip.</div>
+                    <p>
+                        <strong class="modal-highlight"><%= flight.dep_port %></strong> would be the departure
+                        airport.
+                        We are more than willing to set up an <strong class="modal-highlight">Airport Drop
+                            Off</strong> service for you.</p>
+                    <p><strong class="modal-highlight"><%= flight.arr_port %></strong> would be the arrival
+                        airport.
+                        We are looking forward to set up an
+                        <strong class="modal-highlight">Airport Pickup</strong> service for you.</p>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui basic green button" onclick="selectServiceWithFlight(<%= i %>,0)">
+                    <%= flight.dep_port %> Drop off
+                </div>
+                <div class="ui basic red button" onclick="selectServiceWithFlight(<%= i %>,1)">
+                    <%= flight.arr_port %> Pickup
+                </div>
+
+                <div class="ui basic orange button" onclick="toggleOnlineChatting()">
+                    Contact Sales
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+        <div class="item">
+            <div class="ui small image">
+                <img src="/images/question-mark.png">
+            </div>
+            <div class="content">
+                <a class="header">Your flight is not here? <i class="frown icon"></i> </a>
+                <div class="meta">
+                    <span> <i class="wait icon"></i> This may due to data update delay.  </span>
+                </div>
+
+                <div class="description">
+                    <p>Our sales agent <a onclick="toggleOnlineChatting()"><i class="users icon"></i></a>can help you from here.</p>
+                    <p>You are also more than welcome to call us <a href="866-3980-1138"><i class="phone icon"></i> 866-398-1138 </a> </p>
+
+                </div>
+                <div class="extra">
+                    <div class="ui basic orange button" onclick="toggleOnlineChatting()">Contact Sales</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<% }else { %>
+<!--<div class="ui header">We Cannot Find Your Flight Right Now.</div>-->
+<div class="ui message" id="no-result-message">
+    <i class="close icon" onclick="backToHome()"></i>
+    <div class="header">
+        No Flight Found
+    </div>
+    <p>This may caused by data delay. Our sales agent can help you from here.</p>
+    <div class="ui basic orange button" onclick="toggleOnlineChatting()">Contact Sales</div>
+</div>
+
+<% } %>
+
+</div>

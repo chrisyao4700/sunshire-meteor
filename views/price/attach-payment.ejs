@@ -1,0 +1,177 @@
+<% if(segIndex === 3){ %>
+<script src="https://js.braintreegateway.com/web/dropin/1.6.1/js/dropin.js"></script>
+<div class="ui attached segment">
+    <div class="ui header">Payment <i class="info circle icon"><%= pre_order.id %></i></div>
+
+    <div class="ui segments">
+
+        <% if(pre_order.to_trip.status === true){ %>
+        <% var to_trip = pre_order.to_trip.record %>
+        <div class="ui vertical segment final-trip-segment">
+            <div class="ui grid container">
+                <div id="to-trip-from" data-address="<%= to_trip.location_from %>" hidden></div>
+                <div id="to-trip-to" data-address="<%= to_trip.location_to %>" hidden></div>
+                <div class="five wide column">
+                    <div class="price-quote-map" id="to-quote-map" style="background-color: yellow; left: 10px"></div>
+                </div>
+                <div class="seven wide column">
+                    <div class="content">
+                        <a class="header">TRIP # 1 --- $ <%= to_trip.price %></a>
+                        <div class="description">
+                            <p>From: <%= to_trip.location_from %></p>
+                            <p>To: <%= to_trip.location_to %></p>
+                            <p>Pickup Time: <%= to_trip.pickup_time %></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <% } %>
+        <% var has_return = pre_order.return_trip.status %>
+        <div id="check-return" data-has=<%= has_return %> hidden></div>
+        <% if(has_return === true){ %>
+        <% var return_trip = pre_order.return_trip.record %>
+        <div class="ui vertical segment final-trip-segment">
+            <div id="return-trip-from" data-address="<%= return_trip.location_from %>" hidden></div>
+            <div id="return-trip-to" data-address="<%= return_trip.location_to %>" hidden></div>
+            <div class="ui grid container">
+                <div class="five wide column">
+                    <div class="price-quote-map" id="return-quote-map"
+                         style="background-color: yellow;left: 10px"></div>
+                </div>
+                <div class="seven wide column">
+                    <div class="content">
+                        <a class="header">TRIP # 2 --- $ <%= return_trip.price %></a>
+                        <div class="description">
+                            <p>From: <%= return_trip.location_from %></p>
+                            <p>To: <%= return_trip.location_to %></p>
+                            <p>Pickup Time: <%= return_trip.pickup_time %></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <% } %>
+
+        <div class="ui vertical segment">
+            <!--passenger info -->
+            <div class="ui grid">
+                <div class="six wide column" style="padding-left: 20px">
+                    <div class="ui header">Passenger information:</div>
+                    <div class="content">
+                        <p><i class="user circle icon"></i>Name: <%= pre_order.passenger_name %></p>
+                        <p><i class="call icon"></i>Phone: <%= pre_order.passenger_phone %></p>
+                        <p><i class="edit icon"></i>Special Instruction:
+                            <% if(pre_order.note !== ''){ %>
+                            <%= pre_order.note %>
+                            <% } else{ %>
+                            <%= 'N/A' %>
+                            <% } %>
+                        </p>
+                    </div>
+                </div>
+                <div class="six wide column">
+                    <div class="ui header">
+                        Coupon
+                    </div>
+                    <div class="content">
+                        <% if(pre_order.coupon !== '' && pre_order.coupon !== null){ %>
+                        <p><i class="tag icon"></i> Coupon has been applied</p>
+                        <% } else { %>
+                        <form class="ui form" action="/price/submit" method="post">
+                            <input name="pre_order_id" value="<%= pre_order.id %>" hidden>
+                            <div class="field">
+                                <label>Coupon Code:</label>
+                                <input type="text" id="coupon" name="coupon" placeholder="COUPON CODE"
+                                       required/>
+                            </div>
+                            <button type="submit" class="ui left labeled icon blue button" name="service_code"
+                                    value="apply_coupon">
+                                <div class="visible content">Apply</div>
+                                <i class="tag icon"></i>
+                            </button>
+
+                        </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ui segment">
+            <!--payment item-->
+            <div id="dropin-container"></div>
+        </div>
+        <div class="ui segment">
+            <form action="/price/submit" method="post">
+                <input name="pre_order_id" value="<%= pre_order.id %>" hidden/>
+
+                <div class="ui three buttons">
+                    <button type="submit" class="ui left labeled icon red button" name="service_code"
+                            value="back_to_contact">
+                        <div class="visible content">Back</div>
+                        <i class="left arrow icon"></i>
+                    </button>
+                    <button type="button" class="ui right labeled icon orange button" onclick="toggleOnlineChatting()">
+                        <div class="visible content">Contact Sales</div>
+                        <i class="idea icon"></i>
+                    </button>
+                    <button type="button" class="ui right labeled icon green button" id="submit-button"
+                            name="service_code"
+                            value="confirm_price">
+                        <div class="visible content">Check out: $ <%= pre_order.total %></div>
+                        <i class="hand paper icon"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script>
+        var button = document.querySelector('#submit-button');
+        //alert('I am working.');
+        braintree.dropin.create({
+            // Insert your tokenization key here
+            authorization: '<%= payment_token %>',
+            container: '#dropin-container'
+        }, function (createErr, instance) {
+            button.addEventListener('click', function () {
+                instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+                    // When the user clicks on the 'Submit payment' button this code will send the
+                    // encrypted payment information in a variable called a payment method nonce
+                    $.ajax({
+                        type: 'POST',
+                        url: '/price/submit',
+                        data: {
+                            paymentMethodNonce: payload.nonce,
+                            service_code: 'confirm_payment',
+                            pre_order_id: '<%= pre_order.id %>'
+                        }
+                    }).done(function (result) {
+                        // Tear down the Drop-in UI
+                        instance.teardown(function (teardownErr) {
+                            if (teardownErr) {
+                                console.error('Could not tear down Drop-in UI!');
+                            } else {
+                                console.info('Drop-in UI has been torn down!');
+                                // Remove the 'Submit payment' button
+                                $('#submit-button').remove();
+                            }
+                        });
+
+                        if (result.success) {
+//                            $('#checkout-message').html('<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
+                        } else {
+                            console.log(result);
+//                            $('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</div>
+<% } %>

@@ -1,0 +1,15 @@
+<% var location_tag = '';%>
+<% if(segMax < 0){ %>
+<% location_tag ='disabled step step-hide'%>
+<% }else if(segIndex === 0 && segMax >= 0){ %>
+<% location_tag ='active step'%>
+<% }else{ %>
+<% location_tag ='step step-hide'%>
+<% } %>
+<div class="<%=location_tag%>">
+    <i class="location arrow icon"></i>
+    <div class="content">
+        <div class="title">Location & Time</div>
+        <div class="description">Choose your trip options</div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<% if(segIndex === 4){ %>
+<div class="ui attached segment">
+    <div class="ui header">Confirm</div>
+    <h1><%= pre_order.id %></h1>
+    <% if(pre_order.to_trip.status === true){ %>
+    <h1><%= pre_order.to_trip.record.id %></h1>
+    <% } %>
+</div>
+<% } %>
