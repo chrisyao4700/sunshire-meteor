@@ -83,7 +83,7 @@ router.post('/select-flight', function (req, res) {
     api.appSendNormalRequest(api.appPrepareUploadPack("create_pre_order", {}), function (data) {
         if (data.status === true) {
             req.session.pre_order_id = data.record.id;
-            res.cookie('pre_order_id', data.record.id, {maxAge: 30000});
+            res.cookie('pre_order_id', data.record.id, {maxAge: 300000});
             res.send({
                 status: true,
                 message: 'PRE-ORDER STORED',

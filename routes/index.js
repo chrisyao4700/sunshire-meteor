@@ -11,6 +11,13 @@ router.get('/', function (req, res, next) {
         pageName: 'Home'
     });
 });
+router.get('/success', function (req, res, next) {
+    res.render('success', {
+        title: 'Sunshire Meteor',
+        pageName: 'Home',
+        pre_order_id: req.cookies.pre_order_id
+    });
+});
 
 router.post('/submit', function (req, res, next) {
     console.log(req.body);
@@ -19,7 +26,7 @@ router.post('/submit', function (req, res, next) {
             if (data.status === true) {
                 //console.log(data);
                 req.session.pre_order_id = data.record.id;
-                res.cookie('pre_order_id', data.record.id, {maxAge: 30000});
+                res.cookie('pre_order_id', data.record.id, {maxAge: 900000});
                 req.session.segIndex = 0;
                 req.session.segMax = 0;
 
