@@ -42,7 +42,7 @@ function sendNormalRequest(pack, success, fail){
     // console.log('UPLOAD PACK');
     // console.log(pack);
     request.post(
-        'https://sunshireshuttle.com/chrisyao4700/app_socket.php',
+        'https://sunshireshuttle.com/chrisyao4701/app_socket.php',
         pack,
         function (error, response, body) {
             //console.log('SEARCH FLIGHT SENDING PACKAGE');
@@ -58,7 +58,7 @@ function sendNormalRequest(pack, success, fail){
 }
 function sendPaymentRequest(pack,success, fail) {
     request.post(
-        'https://sunshireshuttle.com/chrisyao4700/app_payment.php',
+        'https://sunshireshuttle.com/chrisyao4701/app_payment.php',
         pack,
         function (error, response, body) {
             //console.log('SEARCH FLIGHT SENDING PACKAGE');
